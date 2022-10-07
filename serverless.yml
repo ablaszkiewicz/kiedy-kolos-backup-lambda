@@ -1,0 +1,29 @@
+service: kiedy-kolos-backup-lambda
+
+frameworkVersion: '3'
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: prod
+  region: eu-west-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action: 's3:PutObject'
+          Resource: 'arn:aws:s3:::kiedy-kolos.dev.database-backups/*'
+
+functions:
+  prod-db:
+    handler: dist/handler.main
+    events:
+      - schedule: cron(0,30 * ? * * *)
+    environment:
+      DB_HOST: ${env:DB_HOST}
+      DB_USERNAME: ${env:DB_USERNAME}
+      DB_PASSWORD: ${env:DB_PASSWORD}
+      DB_PORT: ${env:DB_PORT}
+      DB_DATABASE: ${env:DB_DATABASE}
+      AWS_BUCKET: ${env:AWS_BUCKET}
