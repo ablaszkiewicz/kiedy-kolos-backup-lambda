@@ -17,6 +17,7 @@ provider:
 
 functions:
   prod-db:
+    timeout: 60
     handler: dist/handler.main
     events:
       - schedule: cron(0,30 * ? * * *)
