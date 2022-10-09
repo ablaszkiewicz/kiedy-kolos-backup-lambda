@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +15,8 @@
     "dotenv": "^16.0.1",
     "mysqldump": "^3.2.0",
     "s3-streams": "^0.4.0",
-    "tsc": "^2.0.4"
+    "tsc": "^2.0.4",
+    "typescript": "^4.8.4"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
